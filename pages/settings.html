@@ -1,30 +1,59 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Settings</title>
-    <link rel="stylesheet" href="../assets/styles.css" />
-  </head>
-  <body>
-    <!-- Shared Navbar -->
-    <div id="navbar-container"></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Settings</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script defer src="../assets/navbar.js"></script>
+  <script defer src="settings.js"></script>
+  <style>
+    .llm-provider { display: flex; align-items: center; margin-bottom: 12px; }
+    .llm-provider label { width: 180px; font-weight: bold; }
+    .llm-provider input { flex: 1; padding: 6px 8px; margin-right: 8px; }
+    .llm-provider button { margin-right: 8px; padding: 4px 10px; cursor: pointer; }
+    .status { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
+    .status.success { background: #4caf50; }  /* green */
+    .status.failed  { background: #f44336; }  /* red */
+    .status.neutral { background: #9e9e9e; }  /* gray */
+    #results { margin-top: 16px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div id="navbar-container"></div>
+  <div class="content">
+    <h1>Settings</h1>
+    <h2>LLM Connection Management</h2>
 
-    <!-- Page Content -->
-    <div class="container">
-      <h2>⚙️ Settings Page</h2>
-      <p>Configure your app preferences here.</p>
-
-      <div style="margin-top: 20px">
-        <label>
-          <input type="checkbox" id="protectionToggle" />
-          Enable Screen Protection (Hide from screen sharing/recording)
-        </label>
-      </div>
+    <div class="llm-provider">
+      <label for="groqKey">Groq API Key:</label>
+      <input type="password" id="groqKey" placeholder="Enter Groq API key" />
+      <button class="test-btn" data-provider="groq">Test</button>
+      <span id="status-groq" class="status neutral"></span>
     </div>
 
-    <!-- Shared Navbar Logic -->
-    <script src="../assets/navbar.js"></script>
-    <!-- Page Specific Logic -->
-    <script src="settings.js"></script>
-  </body>
+    <div class="llm-provider">
+      <label for="openrouterKey">OpenRouter API Key:</label>
+      <input type="password" id="openrouterKey" placeholder="Enter OpenRouter API key" />
+      <button class="test-btn" data-provider="openrouter">Test</button>
+      <span id="status-openrouter" class="status neutral"></span>
+    </div>
+
+    <div class="llm-provider">
+      <label for="openaiKey">OpenAI API Key:</label>
+      <input type="password" id="openaiKey" placeholder="Enter OpenAI API key" />
+      <button class="test-btn" data-provider="openai">Test</button>
+      <span id="status-openai" class="status neutral"></span>
+    </div>
+
+    <div class="llm-provider">
+      <label for="perplexityKey">Perplexity API Key:</label>
+      <input type="password" id="perplexityKey" placeholder="Enter Perplexity API key" />
+      <button class="test-btn" data-provider="perplexity">Test</button>
+      <span id="status-perplexity" class="status neutral"></span>
+    </div>
+
+    <button id="saveAll">💾 Save All Keys</button>
+    <div id="results"></div>
+  </div>
+</body>
 </html>
